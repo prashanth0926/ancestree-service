@@ -84,10 +84,10 @@ export class PeopleController {
   remove(@Param('id') id: string, @Req() req) {
     if (
       ![
-        (config?.admins || '').split(',').filter(a => a).map(a => a.trim()).map(a => a.toLowerCase())
+        ...(config?.admins || '').split(',').filter(a => a).map(a => a.trim()).map(a => a.toLowerCase())
       ].includes((req.user.email || '').toLowerCase())
     ) {
-      return new UnauthorizedException('you are not authorized to perform this action!');
+      throw new UnauthorizedException('you are not authorized to perform this action!');
     }
     return this.peopleService.remove(+id);
   }
