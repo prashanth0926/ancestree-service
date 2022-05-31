@@ -1,0 +1,24 @@
+{
+  "env": "local",
+  "port": 8080,
+  "orm": {
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "root",
+    "database": "ancestree",
+    "entities": ["dist/**/*.entity.js"],
+    "migrationsTableName": "migration",
+    "migrations": ["dist/migration/*.js"],
+    "cli": {
+      "migrationsDir": "dist/migration"
+    },
+    "synchronize": true
+  },
+  "tokenValidator": {
+    "issuers": "https://accounts.google.com,accounts.google.com",
+    "validatorHost": "https://oauth2.googleapis.com/tokeninfo?id_token="
+  },
+  "cors": "http://localhost:3000"
+}

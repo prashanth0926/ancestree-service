@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: postgres
+      POSTGRES_DB: ancestree
+      DB_HOST: host.docker.internal
+    ports:
+      - "5432:5432"
+    networks:
+      - db-tier
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    depends_on:
+      - db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+    networks:
+      - db-tier
+
+networks:
+  db-tier:
