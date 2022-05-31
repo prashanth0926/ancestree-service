@@ -13,5 +13,6 @@
     "issuers": "TOKEN_VALIDATOR_ISSUER",
     "validatorHost": "TOKEN_VALIDATOR_HOST"
   },
-  "cors": "CORS_ORIGINS"
+  "cors": "CORS_ORIGINS",
+  "admins": "API_ADMINS"
 }

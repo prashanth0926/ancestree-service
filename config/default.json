@@ -20,5 +20,6 @@
     "issuers": "https://accounts.google.com,accounts.google.com",
     "validatorHost": "https://oauth2.googleapis.com/tokeninfo?id_token="
   },
-  "cors": "http://localhost:3000"
+  "cors": "http://localhost:3000",
+  "admins": "mpnaidu26@gmail.com"
 }

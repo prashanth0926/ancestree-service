@@ -1,3 +1,4 @@
+import * as config from 'config';
 import {
   Controller,
   Get,
@@ -8,6 +9,7 @@ import {
   Delete,
   Req,
   Query,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { PeopleService } from './people.service';
@@ -79,7 +81,14 @@ export class PeopleController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: string, @Req() req) {
+    if (
+      ![
+        (config?.admins || '').split(',').filter(a => a).map(a => a.trim()).map(a => a.toLowerCase())
+      ].includes((req.user.email || '').toLowerCase())
+    ) {
+      return new UnauthorizedException('you are not authorized to perform this action!');
+    }
     return this.peopleService.remove(+id);
   }
 }
