@@ -11,4 +11,6 @@ RUN npm ci
 RUN npm run build \
     && npm prune --production
 
+EXPOSE $PORT
+
 CMD ["npm", "run", "start:prod"]
