@@ -43,7 +43,7 @@ export class AuthService {
           };
         }
 
-        if (this.usersCache[r.email]['rate'] > THROTTLE) {
+        if (this.usersCache[r.email]['rate'] < THROTTLE) {
           try {
             const { data: tokenValid } = await axios(
               `${config.tokenValidator?.validatorHost}${payload.token}`,
@@ -61,6 +61,8 @@ export class AuthService {
           } catch (error) {
             throw error;
           }
+        } else {
+          throw new UnauthorizedException(`Throttle (${this.usersCache[r.email]['rate']}) exceeded for ${r.email}!`);
         }
 
         return {

@@ -28,7 +28,7 @@ export class PeopleService {
         email: user.email,
         ...createPersonDto,
         createdby: user.email,
-        aliases: [...(usr?.aliases || '').split(',').map(a => a && a.trim()), usr.name, user.name, usr.email, user.email].join(),
+        aliases: [...((usr?.aliases || '').split(',').map(a => a && a.trim()).filter(Boolean)), user.email].join(','),
       });
     }
 
