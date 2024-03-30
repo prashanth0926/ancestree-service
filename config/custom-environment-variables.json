@@ -14,5 +14,6 @@
     "validatorHost": "TOKEN_VALIDATOR_HOST"
   },
   "cors": "CORS_ORIGINS",
-  "admins": "API_ADMINS"
+  "admins": "API_ADMINS",
+  "throttle": "API_THROTTLE"
 }

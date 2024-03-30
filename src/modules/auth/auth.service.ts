@@ -4,7 +4,7 @@ import axios from 'axios';
 import * as config from 'config';
 import { AuthPayloadDto } from './dto/auth.dto';
 
-const THROTTLE = 50;
+const THROTTLE = config?.throttle;
 
 @Injectable()
 export class AuthService {
