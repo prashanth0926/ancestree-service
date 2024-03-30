@@ -16,6 +16,7 @@
     },
     "synchronize": true
   },
+  "throttle": 250,
   "tokenValidator": {
     "issuers": "https://accounts.google.com,accounts.google.com",
     "validatorHost": "https://oauth2.googleapis.com/tokeninfo?id_token="
