@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag us-central1-docker.pkg.dev/ancestree-351101/ancestree/ancestree-service:$(date +%s)
+    - name: Latest tag for Docker image
+      run: docker tag us-central1-docker.pkg.dev/ancestree-351101/ancestree/ancestree-service:$(date +%s) us-central1-docker.pkg.dev/ancestree-351101/ancestree/ancestree-service:latest
+    
+      
