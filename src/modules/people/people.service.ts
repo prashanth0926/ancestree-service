@@ -5,6 +5,12 @@ import { CreatePersonDto } from './dto/create-person.dto';
 import { UpdatePersonDto } from './dto/update-person.dto';
 import { Person } from './entities/person.entity';
 
+const GEN2 = [
+  'mom', 'children', 'spouse', 'spouse.children', 'children.spouse', 'spouse.children.spouse', 'children.mom', 'spouse.children.mom',
+  'spouse.children.children', 'spouse.children.spouse.children', 'spouse.children.children.mom', 'spouse.children.spouse.children.mom', 'spouse.children.children.spouse', 'spouse.children.spouse.children.spouse',
+  'spouse.children.children.children', 'spouse.children.children.spouse.children', 'spouse.children.children.spouse.children.mom', 'spouse.children.children.spouse.children.spouse', 'spouse.children.spouse.children.spouse.children', 'spouse.children.children.children.mom', 'spouse.children.spouse.children.spouse.children.mom', 'spouse.children.children.children.spouse', 'spouse.children.spouse.children.spouse.children.spouse', 'spouse.children.spouse.children.children', 'spouse.children.spouse.children.children.mom', 'spouse.children.spouse.children.children.spouse',
+];
+
 @Injectable()
 export class PeopleService {
   constructor(
@@ -51,7 +57,7 @@ export class PeopleService {
 
     if (familyHead) {
       return this.personRepository.find({
-        relations: ['mom', 'spouse'],
+        relations: GEN2,
         where: {
           ...whereOptions,
           mom: IsNull(),
@@ -106,7 +112,7 @@ export class PeopleService {
         }, {
           aliases: ILike(`%${user.email}%`)
         }],
-        relations: ['mom', 'children', 'spouse']
+        relations: GEN2
       });
 
       if (usr) {
