@@ -7,11 +7,13 @@ import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './modules/auth/auth.guard';
 import { RolesGuard } from './modules/roles/roles.guard';
 import { RolesModule } from './modules/roles/roles.module';
+import { EventModule } from './modules/event/event.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(config.orm),
     PeopleModule,
+    EventModule,
     AuthModule,
     RolesModule,
   ],
