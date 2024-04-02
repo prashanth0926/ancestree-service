@@ -1,11 +1,8 @@
 import {
   Column,
   Entity,
-  JoinTable,
-  ManyToMany,
   ManyToOne,
   OneToMany,
-  OneToOne,
   Unique,
 } from 'typeorm';
 import { MetaDataEntity } from '../../../common/entity.metadata';

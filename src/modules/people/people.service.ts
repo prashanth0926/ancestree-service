@@ -20,8 +20,8 @@ export class PeopleService {
 
   async create(createPersonDto: CreatePersonDto, user: any) {
     const usr = await this.personRepository.findOne({
-      name: user.name,
-      familyname: user.lastName,
+      name: createPersonDto.name,
+      familyname: createPersonDto.familyname,
       dob: createPersonDto.dob,
     });
 
